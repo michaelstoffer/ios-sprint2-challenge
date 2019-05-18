@@ -23,7 +23,11 @@ class ShoppingListController {
     let shoppingPreferenceKey = "shoppingPreferenceKey"
     
     var shoppingItemsAdded: [ShoppingItem] {
-        return self.shoppingItems.filter { $0.hasBeenAdded == true }
+        return self.shoppingItems.sorted(by: { $0.name < $1.name }).filter { $0.hasBeenAdded == true }
+    }
+    
+    var shoppingItemsNotAdded: [ShoppingItem] {
+        return self.shoppingItems.sorted(by: { $0.name < $1.name }).filter { $0.hasBeenAdded == false }
     }
     
     var shoppingItemsPreference: Bool? {
